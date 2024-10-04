@@ -24,6 +24,7 @@ namespace MaidPaymentManager
         private void MainForm_Load(object sender, EventArgs e)
         {
             AddDateTimePickerToGrid();
+            ConfigureDataGridViewColumns();
         }
 
         private void LoadStatistics()
@@ -46,6 +47,18 @@ namespace MaidPaymentManager
             dataGridViewWorkDetails.Controls.Add(dateTimePicker);
             dataGridViewWorkDetails.CellBeginEdit += dataGridViewWorkDetails_CellBeginEdit;
             dataGridViewWorkDetails.Scroll += (sender, e) => dateTimePicker.Visible = false;
+        }
+
+        private void ConfigureDataGridViewColumns()
+        {
+            foreach (DataGridViewColumn column in dataGridViewWorkDetails.Columns)
+            {
+                // Set all columns to fill the available space equally
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                // Set the minimum width based on the column header's content
+                column.MinimumWidth = TextRenderer.MeasureText(column.HeaderText, dataGridViewWorkDetails.Font).Width + 20;
+            }
         }
 
         private void dataGridViewWorkDetails_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
