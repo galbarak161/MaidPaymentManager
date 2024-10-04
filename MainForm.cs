@@ -44,8 +44,8 @@ namespace MaidPaymentManager
             dateTimePicker.Format = DateTimePickerFormat.Short;
             dateTimePicker.Visible = false;
             dateTimePicker.ValueChanged += new EventHandler(DateTimePicker_ValueChanged);
+
             dataGridViewWorkDetails.Controls.Add(dateTimePicker);
-            dataGridViewWorkDetails.CellBeginEdit += dataGridViewWorkDetails_CellBeginEdit;
             dataGridViewWorkDetails.Scroll += (sender, e) => dateTimePicker.Visible = false;
         }
 
@@ -107,17 +107,35 @@ namespace MaidPaymentManager
 
             // Clear previous validation messages
             lblValidationMessage.Text = "";
+        }
 
-            // Validate the current row's data
-            if (e.RowIndex >= 0 && ValidateWorkDetails(e.RowIndex))
+        private void dataGridViewWorkDetails_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            var row = dataGridViewWorkDetails.Rows[e.RowIndex];
+            var dateValue = row.Cells[DateColumnIndex].Value?.ToString();
+            var numberOfHoursValue = row.Cells[NumberOfHoursColumnIndex].Value?.ToString();
+
+            var isValidRow = false;
+
+            // Validate the date and number of hours before allowing the row to be added or edited
+            if (string.IsNullOrWhiteSpace(dateValue) || !_newWorkValidator.ValidateDate(dateValue))
             {
+                lblValidationMessage.Text = "Date must be a valid date in the current month.";
+            }
+            else if (string.IsNullOrWhiteSpace(numberOfHoursValue) || !_newWorkValidator.ValidateNumberOfHours(numberOfHoursValue))
+            {
+                lblValidationMessage.Text = "Number of Hours must be a positive number between 1 and 5.";
+            }
+            else
+            {
+                isValidRow = true;
+                lblValidationMessage.Text = ""; // Clear validation message if validation passes
                 UpdateSummary();
+            }
 
-                // Add a new row if the current row is the last one and fully validated
-                if (e.RowIndex == dataGridViewWorkDetails.Rows.Count - 1)
-                {
-                    dataGridViewWorkDetails.Rows.Add();
-                }
+            if (!isValidRow)
+            {
+                e.Cancel = true; // Prevent UI actions until row is valid or deleted
             }
         }
 
@@ -143,25 +161,6 @@ namespace MaidPaymentManager
         private void DateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             dataGridViewWorkDetails.CurrentCell.Value = dateTimePicker.Value.ToShortDateString();
-        }
-
-        private bool ValidateWorkDetails(int rowIndex)
-        {
-            var dateValue = dataGridViewWorkDetails.Rows[rowIndex].Cells[DateColumnIndex].Value?.ToString();
-            var numberOfHoursValue = dataGridViewWorkDetails.Rows[rowIndex].Cells[NumberOfHoursColumnIndex].Value?.ToString();
-
-            if (dateValue is null || !_newWorkValidator.ValidateDate(dateValue))
-            {
-                lblValidationMessage.Text = "Date must be a valid date in the current month.";
-                return false;
-            }
-            else if (numberOfHoursValue is null || !_newWorkValidator.ValidateNumberOfHours(numberOfHoursValue))
-            {
-                lblValidationMessage.Text = "Number of Hours must be a positive number between 1 and 5.";
-                return false;
-            }
-
-            return true;
         }
 
         private void UpdateSummary()

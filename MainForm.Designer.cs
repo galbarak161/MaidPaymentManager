@@ -108,8 +108,10 @@
             dataGridViewWorkDetails.Name = "dataGridViewWorkDetails";
             dataGridViewWorkDetails.Size = new Size(510, 200);
             dataGridViewWorkDetails.TabIndex = 6;
+            dataGridViewWorkDetails.CellBeginEdit += dataGridViewWorkDetails_CellBeginEdit;
             dataGridViewWorkDetails.CellEndEdit += dataGridViewWorkDetails_CellEndEdit;
             dataGridViewWorkDetails.EditingControlShowing += dataGridViewWorkDetails_EditingControlShowing;
+            dataGridViewWorkDetails.RowValidating += dataGridViewWorkDetails_RowValidating;
             dataGridViewWorkDetails.UserAddedRow += dataGridViewWorkDetails_UserAddedRow;
             dataGridViewWorkDetails.UserDeletedRow += dataGridViewWorkDetails_UserDeletedRow;
             // 
