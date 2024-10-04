@@ -22,6 +22,7 @@ namespace MaidPaymentManager
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            SetGreetingAndMonthLabel();
             AddDateTimePickerToGrid();
             ConfigureDataGridViewColumns();
         }
@@ -35,6 +36,12 @@ namespace MaidPaymentManager
         {
             // Always keep an empty row for adding new work
             dataGridViewWorkDetails.Rows.Add();
+        }
+
+        private void SetGreetingAndMonthLabel()
+        {
+            lblCurrentMonth.Text = $"Current Month: {DateTime.Now.ToString("MMMM")}";
+            lblValidationMessage.Text = "";
         }
 
         private void AddDateTimePickerToGrid()

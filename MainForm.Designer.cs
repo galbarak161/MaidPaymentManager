@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             lblWorkedDays = new Label();
             lblTotalHours = new Label();
             lblTotalPayment = new Label();
@@ -39,74 +40,115 @@
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            lblGreeting = new Label();
+            lblCurrentMonth = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewWorkDetails).BeginInit();
             SuspendLayout();
             // 
             // lblWorkedDays
             // 
-            lblWorkedDays.Location = new Point(20, 20);
+            lblWorkedDays.Location = new Point(26, 78);
             lblWorkedDays.Name = "lblWorkedDays";
-            lblWorkedDays.Size = new Size(200, 23);
-            lblWorkedDays.TabIndex = 0;
+            lblWorkedDays.Size = new Size(175, 19);
+            lblWorkedDays.Font = new Font("Arial", 10F, FontStyle.Bold);
+            lblWorkedDays.ForeColor = Color.DarkSlateGray;
+            lblWorkedDays.TabIndex = 2;
             lblWorkedDays.Text = "Worked Days:";
             // 
             // lblTotalHours
             // 
-            lblTotalHours.Location = new Point(20, 50);
+            lblTotalHours.Location = new Point(26, 103);
             lblTotalHours.Name = "lblTotalHours";
-            lblTotalHours.Size = new Size(200, 23);
-            lblTotalHours.TabIndex = 1;
+            lblTotalHours.Size = new Size(175, 19);
+            lblTotalHours.Font = new Font("Arial", 10F, FontStyle.Bold);
+            lblTotalHours.ForeColor = Color.DarkSlateGray;
+            lblTotalHours.TabIndex = 3;
             lblTotalHours.Text = "Total Hours:";
             // 
             // lblTotalPayment
             // 
-            lblTotalPayment.Location = new Point(20, 80);
+            lblTotalPayment.Location = new Point(26, 128);
             lblTotalPayment.Name = "lblTotalPayment";
-            lblTotalPayment.Size = new Size(200, 23);
-            lblTotalPayment.TabIndex = 2;
+            lblTotalPayment.Size = new Size(175, 19);
+            lblTotalPayment.Font = new Font("Arial", 10F, FontStyle.Bold);
+            lblTotalPayment.ForeColor = Color.DarkSlateGray;
+            lblTotalPayment.TabIndex = 4;
             lblTotalPayment.Text = "Total Payment:";
             // 
             // lblValidationMessage
             // 
+            lblValidationMessage.Font = new Font("Arial", 9F, FontStyle.Italic);
             lblValidationMessage.ForeColor = Color.Red;
-            lblValidationMessage.Location = new Point(20, 330);
+            lblValidationMessage.Location = new Point(26, 273);
             lblValidationMessage.Name = "lblValidationMessage";
-            lblValidationMessage.Size = new Size(550, 23);
-            lblValidationMessage.TabIndex = 3;
+            lblValidationMessage.Size = new Size(448, 21);
+            lblValidationMessage.TabIndex = 5;
+            lblValidationMessage.Text = "Error message";
             // 
             // btnMaidSettings
             // 
-            btnMaidSettings.Location = new Point(20, 356);
+            btnMaidSettings.BackColor = Color.LightSteelBlue;
+            btnMaidSettings.FlatAppearance.BorderSize = 0;
+            btnMaidSettings.FlatStyle = FlatStyle.Flat;
+            btnMaidSettings.Font = new Font("Arial", 10F, FontStyle.Bold);
+            btnMaidSettings.Location = new Point(26, 296);
+            btnMaidSettings.Margin = new Padding(3, 2, 3, 2);
             btnMaidSettings.Name = "btnMaidSettings";
-            btnMaidSettings.Size = new Size(150, 30);
+            btnMaidSettings.Size = new Size(131, 29);
             btnMaidSettings.TabIndex = 3;
             btnMaidSettings.Text = "Maid Settings";
+            btnMaidSettings.UseVisualStyleBackColor = false;
             btnMaidSettings.Click += btnMaidSettings_Click;
             // 
             // btnStatistics
             // 
-            btnStatistics.Location = new Point(200, 356);
+            btnStatistics.BackColor = Color.LightSteelBlue;
+            btnStatistics.FlatAppearance.BorderSize = 0;
+            btnStatistics.FlatStyle = FlatStyle.Flat;
+            btnStatistics.Font = new Font("Arial", 10F, FontStyle.Bold);
+            btnStatistics.Location = new Point(186, 296);
+            btnStatistics.Margin = new Padding(3, 2, 3, 2);
             btnStatistics.Name = "btnStatistics";
-            btnStatistics.Size = new Size(150, 30);
+            btnStatistics.Size = new Size(131, 29);
             btnStatistics.TabIndex = 4;
             btnStatistics.Text = "Statistics";
+            btnStatistics.UseVisualStyleBackColor = false;
             btnStatistics.Click += btnStatistics_Click;
             // 
             // btnEmployerContributions
             // 
-            btnEmployerContributions.Location = new Point(380, 356);
+            btnEmployerContributions.BackColor = Color.LightSteelBlue;
+            btnEmployerContributions.FlatAppearance.BorderSize = 0;
+            btnEmployerContributions.FlatStyle = FlatStyle.Flat;
+            btnEmployerContributions.Font = new Font("Arial", 10F, FontStyle.Bold);
+            btnEmployerContributions.Location = new Point(343, 296);
+            btnEmployerContributions.Margin = new Padding(3, 2, 3, 2);
             btnEmployerContributions.Name = "btnEmployerContributions";
-            btnEmployerContributions.Size = new Size(150, 30);
+            btnEmployerContributions.Size = new Size(131, 29);
             btnEmployerContributions.TabIndex = 5;
             btnEmployerContributions.Text = "Employer Contributions";
+            btnEmployerContributions.UseVisualStyleBackColor = false;
             btnEmployerContributions.Click += btnEmployerContributions_Click;
             // 
             // dataGridViewWorkDetails
             // 
+            dataGridViewWorkDetails.BackgroundColor = Color.WhiteSmoke;
+            dataGridViewWorkDetails.BorderStyle = BorderStyle.Fixed3D;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Arial", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.Navy;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewWorkDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewWorkDetails.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3 });
-            dataGridViewWorkDetails.Location = new Point(20, 120);
+            dataGridViewWorkDetails.GridColor = Color.LightGray;
+            dataGridViewWorkDetails.Location = new Point(26, 155);
+            dataGridViewWorkDetails.Margin = new Padding(3, 2, 3, 2);
             dataGridViewWorkDetails.Name = "dataGridViewWorkDetails";
-            dataGridViewWorkDetails.Size = new Size(510, 200);
+            dataGridViewWorkDetails.RowHeadersVisible = false;
+            dataGridViewWorkDetails.Size = new Size(448, 108);
             dataGridViewWorkDetails.TabIndex = 6;
             dataGridViewWorkDetails.CellBeginEdit += dataGridViewWorkDetails_CellBeginEdit;
             dataGridViewWorkDetails.CellEndEdit += dataGridViewWorkDetails_CellEndEdit;
@@ -130,11 +172,38 @@
             dataGridViewTextBoxColumn3.HeaderText = "Comments";
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
+            // lblGreeting
+            // 
+            lblGreeting.AutoSize = true;
+            lblGreeting.Font = new Font("Arial", 16F, FontStyle.Bold);
+            lblGreeting.ForeColor = Color.DarkSlateBlue;
+            lblGreeting.Location = new Point(71, 20);
+            lblGreeting.Name = "lblGreeting";
+            lblGreeting.Size = new Size(380, 26);
+            lblGreeting.TabIndex = 1;
+            lblGreeting.Text = "Welcome to Maid Payment Manager!";
+            lblGreeting.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblCurrentMonth
+            // 
+            lblCurrentMonth.AutoSize = true;
+            lblCurrentMonth.Font = new Font("Arial", 12F);
+            lblCurrentMonth.ForeColor = Color.DarkCyan;
+            lblCurrentMonth.Location = new Point(186, 57);
+            lblCurrentMonth.Name = "lblCurrentMonth";
+            lblCurrentMonth.Size = new Size(105, 18);
+            lblCurrentMonth.TabIndex = 0;
+            lblCurrentMonth.Text = "Current Month";
+            lblCurrentMonth.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(592, 412);
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(495, 345);
+            Controls.Add(lblCurrentMonth);
+            Controls.Add(lblGreeting);
             Controls.Add(lblWorkedDays);
             Controls.Add(lblTotalHours);
             Controls.Add(lblTotalPayment);
@@ -143,11 +212,14 @@
             Controls.Add(btnStatistics);
             Controls.Add(btnEmployerContributions);
             Controls.Add(dataGridViewWorkDetails);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Maid Payment Manager";
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewWorkDetails).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -163,5 +235,7 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private Label lblGreeting;
+        private Label lblCurrentMonth;
     }
 }
