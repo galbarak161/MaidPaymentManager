@@ -28,18 +28,11 @@ namespace MaidPaymentManager
 
         private void LoadStatistics()
         {
-            // Mock data for demonstration
-            lblWorkedDays.Text = "Worked Days: 5";
-            lblTotalHours.Text = "Total Hours: 40";
-            lblTotalPayment.Text = "Total Payment: $400";
+            UpdateSummary();
         }
 
         private void LoadWorkDetails()
         {
-            // Mock data for the current month's work details
-            dataGridViewWorkDetails.Rows.Add("2024-10-01", 8, "General cleaning");
-            dataGridViewWorkDetails.Rows.Add("2024-10-02", 7, "Deep cleaning");
-
             // Always keep an empty row for adding new work
             dataGridViewWorkDetails.Rows.Add();
         }
@@ -103,10 +96,26 @@ namespace MaidPaymentManager
             lblValidationMessage.Text = "";
 
             // Validate the current row's data
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && ValidateWorkDetails(e.RowIndex))
             {
-                ValidateWorkDetails(e.RowIndex);
+                UpdateSummary();
+
+                // Add a new row if the current row is the last one and fully validated
+                if (e.RowIndex == dataGridViewWorkDetails.Rows.Count - 1)
+                {
+                    dataGridViewWorkDetails.Rows.Add();
+                }
             }
+        }
+
+        private void dataGridViewWorkDetails_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            UpdateSummary();
+        }
+
+        private void dataGridViewWorkDetails_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            UpdateSummary();
         }
 
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -123,20 +132,47 @@ namespace MaidPaymentManager
             dataGridViewWorkDetails.CurrentCell.Value = dateTimePicker.Value.ToShortDateString();
         }
 
-        private void ValidateWorkDetails(int rowIndex)
+        private bool ValidateWorkDetails(int rowIndex)
         {
             var dateValue = dataGridViewWorkDetails.Rows[rowIndex].Cells[DateColumnIndex].Value?.ToString();
             var numberOfHoursValue = dataGridViewWorkDetails.Rows[rowIndex].Cells[NumberOfHoursColumnIndex].Value?.ToString();
 
-            // Validate the date and number of hours
             if (dateValue is null || !_newWorkValidator.ValidateDate(dateValue))
             {
                 lblValidationMessage.Text = "Date must be a valid date in the current month.";
+                return false;
             }
             else if (numberOfHoursValue is null || !_newWorkValidator.ValidateNumberOfHours(numberOfHoursValue))
             {
                 lblValidationMessage.Text = "Number of Hours must be a positive number between 1 and 5.";
+                return false;
             }
+
+            return true;
+        }
+
+        private void UpdateSummary()
+        {
+            int totalDays = 0;
+            double totalHours = 0;
+
+            foreach (DataGridViewRow row in dataGridViewWorkDetails.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                var dateValue = row.Cells[DateColumnIndex].Value?.ToString();
+                var numberOfHoursValue = row.Cells[NumberOfHoursColumnIndex].Value?.ToString();
+
+                if (!string.IsNullOrWhiteSpace(dateValue) && !string.IsNullOrWhiteSpace(numberOfHoursValue))
+                {
+                    totalDays++;
+                    totalHours += double.Parse(numberOfHoursValue);
+                }
+            }
+
+            lblWorkedDays.Text = $"Worked Days: {totalDays}";
+            lblTotalHours.Text = $"Total Hours: {totalHours}";
+            lblTotalPayment.Text = $"Total Payment: ${totalHours * 10}";
         }
 
         #region buttons

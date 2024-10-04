@@ -110,6 +110,8 @@
             dataGridViewWorkDetails.TabIndex = 6;
             dataGridViewWorkDetails.CellEndEdit += dataGridViewWorkDetails_CellEndEdit;
             dataGridViewWorkDetails.EditingControlShowing += dataGridViewWorkDetails_EditingControlShowing;
+            dataGridViewWorkDetails.UserAddedRow += dataGridViewWorkDetails_UserAddedRow;
+            dataGridViewWorkDetails.UserDeletedRow += dataGridViewWorkDetails_UserDeletedRow;
             // 
             // dataGridViewTextBoxColumn1
             // 
