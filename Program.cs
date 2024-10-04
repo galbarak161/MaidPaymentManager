@@ -8,10 +8,14 @@ namespace MaidPaymentManager
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // Create an instance of the NewWorkValidator
+            INewWorkValidator newWorkValidator = new NewWorkValidator();
+
+            // Pass it to MainForm
+            Application.Run(new MainForm(newWorkValidator));
         }
     }
 }

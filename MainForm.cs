@@ -1,14 +1,21 @@
+using System.Windows.Forms;
+
 namespace MaidPaymentManager
 {
     public partial class MainForm : Form
     {
-        private DataGridViewTextBoxColumn dateColumn;
-        private DataGridViewTextBoxColumn numberOfHoursColumn;
-        private DataGridViewTextBoxColumn commentsColumn;
+        private const int DateColumnIndex = 0;
+        private const int NumberOfHoursColumnIndex = 1;
+        private const int CommentsColumnIndex = 2;
+
+        private readonly INewWorkValidator _newWorkValidator; // Injected new work validator
+
         private DateTimePicker dateTimePicker;
 
-        public MainForm()
+        public MainForm(INewWorkValidator newWorkValidator)
         {
+            _newWorkValidator = newWorkValidator; // Assign the injected validator
+
             InitializeComponent();
             LoadStatistics();
             LoadWorkDetails();
@@ -37,24 +44,6 @@ namespace MaidPaymentManager
             dataGridViewWorkDetails.Rows.Add();
         }
 
-        private void btnMaidSettings_Click(object sender, EventArgs e)
-        {
-            MaidSettingsForm maidSettingsForm = new MaidSettingsForm();
-            maidSettingsForm.ShowDialog();
-        }
-
-        private void btnStatistics_Click(object sender, EventArgs e)
-        {
-            StatisticsForm statisticsForm = new StatisticsForm();
-            statisticsForm.ShowDialog();
-        }
-
-        private void btnEmployerContributions_Click(object sender, EventArgs e)
-        {
-            EmployerContributionsForm employerContributionsForm = new EmployerContributionsForm();
-            employerContributionsForm.ShowDialog();
-        }
-
         private void AddDateTimePickerToGrid()
         {
             dateTimePicker = new DateTimePicker();
@@ -63,13 +52,12 @@ namespace MaidPaymentManager
             dateTimePicker.ValueChanged += new EventHandler(DateTimePicker_ValueChanged);
             dataGridViewWorkDetails.Controls.Add(dateTimePicker);
             dataGridViewWorkDetails.CellBeginEdit += dataGridViewWorkDetails_CellBeginEdit;
-            dataGridViewWorkDetails.Scroll += dataGridViewWorkDetails_Scroll;
+            dataGridViewWorkDetails.Scroll += (sender, e) => dateTimePicker.Visible = false;
         }
 
         private void dataGridViewWorkDetails_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            // Check if the column being edited is the Date column (using index 0)
-            if (e.ColumnIndex == 0 && e.RowIndex >= 0)
+            if (e.ColumnIndex == DateColumnIndex && e.RowIndex >= 0)
             {
                 Rectangle rect = dataGridViewWorkDetails.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
                 dateTimePicker.Location = rect.Location;
@@ -91,67 +79,85 @@ namespace MaidPaymentManager
             }
         }
 
-        private void DateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            dataGridViewWorkDetails.CurrentCell.Value = dateTimePicker.Value.ToShortDateString();
-        }
-
-        private void dataGridViewWorkDetails_Scroll(object sender, ScrollEventArgs e)
-        {
-            dateTimePicker.Visible = false;
-        }
-
-
         private void dataGridViewWorkDetails_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             TextBox textBox = e.Control as TextBox;
             if (textBox != null)
             {
-                textBox.KeyPress -= TextBox_KeyPress; // Remove handler to avoid multiple subscriptions
+                textBox.KeyPress -= NumericTextBox_KeyPress; // Remove handler to avoid multiple subscriptions
 
                 // Check if the current cell is in the "NumberOfHours" column (index 1)
-                if (dataGridViewWorkDetails.CurrentCell.ColumnIndex == 1)
+                if (dataGridViewWorkDetails.CurrentCell.ColumnIndex == NumberOfHoursColumnIndex)
                 {
-                    textBox.KeyPress += TextBox_KeyPress; // Allow only numeric input
+                    textBox.KeyPress += NumericTextBox_KeyPress; // Allow only numeric input
                 }
-            }
-        }
-
-        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Allow only digits and control keys
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
             }
         }
 
         private void dataGridViewWorkDetails_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            dateTimePicker.Visible = false; // Hide the DateTimePicker if it was visible
+            // Hide the DateTimePicker if it was visible
+            dateTimePicker.Visible = false;
 
+            // Clear previous validation messages
             lblValidationMessage.Text = "";
 
-            // Validate "NumberOfHours" column (index 1) for positive integer
-            if (e.ColumnIndex == 1) // Assuming NumberOfHours is at index 1
+            // Validate the current row's data
+            if (e.RowIndex >= 0)
             {
-                var value = dataGridViewWorkDetails.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                if (value == null || !int.TryParse(value.ToString(), out int hours) || hours <= 0)
-                {
-                    lblValidationMessage.Text = "Number of Hours must be a positive integer.";
-                }
-            }
-
-            // Validate "Comments" column (index 2) for maximum length of 50 characters
-            if (e.ColumnIndex == 2) // Assuming Comments is at index 2
-            {
-                var value = dataGridViewWorkDetails.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                if (value != null && value.ToString().Length > 50)
-                {
-                    lblValidationMessage.Text = "Comments cannot exceed 50 characters.";
-                }
+                ValidateWorkDetails(e.RowIndex);
             }
         }
-    }
 
+        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow only digits and control keys
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void DateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridViewWorkDetails.CurrentCell.Value = dateTimePicker.Value.ToShortDateString();
+        }
+
+        private void ValidateWorkDetails(int rowIndex)
+        {
+            var dateValue = dataGridViewWorkDetails.Rows[rowIndex].Cells[DateColumnIndex].Value?.ToString();
+            var numberOfHoursValue = dataGridViewWorkDetails.Rows[rowIndex].Cells[NumberOfHoursColumnIndex].Value?.ToString();
+
+            // Validate the date and number of hours
+            if (dateValue is null || !_newWorkValidator.ValidateDate(dateValue))
+            {
+                lblValidationMessage.Text = "Date must be a valid date in the current month.";
+            }
+            else if (numberOfHoursValue is null || !_newWorkValidator.ValidateNumberOfHours(numberOfHoursValue))
+            {
+                lblValidationMessage.Text = "Number of Hours must be a positive number between 1 and 5.";
+            }
+        }
+
+        #region buttons
+        private void btnMaidSettings_Click(object sender, EventArgs e)
+        {
+            MaidSettingsForm maidSettingsForm = new MaidSettingsForm();
+            maidSettingsForm.ShowDialog();
+        }
+
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            StatisticsForm statisticsForm = new StatisticsForm();
+            statisticsForm.ShowDialog();
+        }
+
+        private void btnEmployerContributions_Click(object sender, EventArgs e)
+        {
+            EmployerContributionsForm employerContributionsForm = new EmployerContributionsForm();
+            employerContributionsForm.ShowDialog();
+        }
+
+        #endregion
+    }
 }

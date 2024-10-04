@@ -76,7 +76,7 @@
             // 
             // btnMaidSettings
             // 
-            btnMaidSettings.Location = new Point(20, 340);
+            btnMaidSettings.Location = new Point(20, 356);
             btnMaidSettings.Name = "btnMaidSettings";
             btnMaidSettings.Size = new Size(150, 30);
             btnMaidSettings.TabIndex = 3;
@@ -85,7 +85,7 @@
             // 
             // btnStatistics
             // 
-            btnStatistics.Location = new Point(200, 340);
+            btnStatistics.Location = new Point(200, 356);
             btnStatistics.Name = "btnStatistics";
             btnStatistics.Size = new Size(150, 30);
             btnStatistics.TabIndex = 4;
@@ -94,7 +94,7 @@
             // 
             // btnEmployerContributions
             // 
-            btnEmployerContributions.Location = new Point(380, 340);
+            btnEmployerContributions.Location = new Point(380, 356);
             btnEmployerContributions.Name = "btnEmployerContributions";
             btnEmployerContributions.Size = new Size(150, 30);
             btnEmployerContributions.TabIndex = 5;
@@ -106,7 +106,7 @@
             dataGridViewWorkDetails.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3 });
             dataGridViewWorkDetails.Location = new Point(20, 120);
             dataGridViewWorkDetails.Name = "dataGridViewWorkDetails";
-            dataGridViewWorkDetails.Size = new Size(550, 200);
+            dataGridViewWorkDetails.Size = new Size(510, 200);
             dataGridViewWorkDetails.TabIndex = 6;
             dataGridViewWorkDetails.CellEndEdit += dataGridViewWorkDetails_CellEndEdit;
             dataGridViewWorkDetails.EditingControlShowing += dataGridViewWorkDetails_EditingControlShowing;
@@ -130,7 +130,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(592, 383);
+            ClientSize = new Size(592, 412);
             Controls.Add(lblWorkedDays);
             Controls.Add(lblTotalHours);
             Controls.Add(lblTotalPayment);
