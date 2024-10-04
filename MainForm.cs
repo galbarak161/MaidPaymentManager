@@ -9,8 +9,7 @@ namespace MaidPaymentManager
         private const int CommentsColumnIndex = 2;
 
         private readonly INewWorkValidator _newWorkValidator; // Injected new work validator
-
-        private DateTimePicker dateTimePicker;
+        private readonly DateTimePicker dateTimePicker = new DateTimePicker();
 
         public MainForm(INewWorkValidator newWorkValidator)
         {
@@ -40,10 +39,15 @@ namespace MaidPaymentManager
 
         private void AddDateTimePickerToGrid()
         {
-            dateTimePicker = new DateTimePicker();
             dateTimePicker.Format = DateTimePickerFormat.Short;
             dateTimePicker.Visible = false;
             dateTimePicker.ValueChanged += new EventHandler(DateTimePicker_ValueChanged);
+
+            // Restrict to current month
+            DateTime today = DateTime.Today;
+            dateTimePicker.MinDate = new DateTime(today.Year, today.Month, 1);
+            dateTimePicker.MaxDate = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
+
 
             dataGridViewWorkDetails.Controls.Add(dateTimePicker);
             dataGridViewWorkDetails.Scroll += (sender, e) => dateTimePicker.Visible = false;
