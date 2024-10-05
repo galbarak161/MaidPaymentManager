@@ -83,7 +83,7 @@
             // 
             lblValidationMessage.Font = new Font("Arial", 9F, FontStyle.Italic);
             lblValidationMessage.ForeColor = Color.Red;
-            lblValidationMessage.Location = new Point(26, 273);
+            lblValidationMessage.Location = new Point(26, 289);
             lblValidationMessage.Name = "lblValidationMessage";
             lblValidationMessage.Size = new Size(448, 21);
             lblValidationMessage.TabIndex = 5;
@@ -95,7 +95,7 @@
             btnMaidSettings.FlatAppearance.BorderSize = 0;
             btnMaidSettings.FlatStyle = FlatStyle.Flat;
             btnMaidSettings.Font = new Font("Arial", 10F, FontStyle.Bold);
-            btnMaidSettings.Location = new Point(26, 296);
+            btnMaidSettings.Location = new Point(26, 310);
             btnMaidSettings.Margin = new Padding(3, 2, 3, 2);
             btnMaidSettings.Name = "btnMaidSettings";
             btnMaidSettings.Size = new Size(131, 29);
@@ -110,7 +110,7 @@
             btnStatistics.FlatAppearance.BorderSize = 0;
             btnStatistics.FlatStyle = FlatStyle.Flat;
             btnStatistics.Font = new Font("Arial", 10F, FontStyle.Bold);
-            btnStatistics.Location = new Point(186, 296);
+            btnStatistics.Location = new Point(186, 310);
             btnStatistics.Margin = new Padding(3, 2, 3, 2);
             btnStatistics.Name = "btnStatistics";
             btnStatistics.Size = new Size(131, 29);
@@ -125,7 +125,7 @@
             btnEmployerContributions.FlatAppearance.BorderSize = 0;
             btnEmployerContributions.FlatStyle = FlatStyle.Flat;
             btnEmployerContributions.Font = new Font("Arial", 10F, FontStyle.Bold);
-            btnEmployerContributions.Location = new Point(343, 296);
+            btnEmployerContributions.Location = new Point(343, 310);
             btnEmployerContributions.Margin = new Padding(3, 2, 3, 2);
             btnEmployerContributions.Name = "btnEmployerContributions";
             btnEmployerContributions.Size = new Size(131, 29);
@@ -246,7 +246,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(495, 345);
+            ClientSize = new Size(495, 351);
             Controls.Add(lblWorkedDays);
             Controls.Add(lblTotalHours);
             Controls.Add(lblTotalPayment);

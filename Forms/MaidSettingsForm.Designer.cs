@@ -36,7 +36,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Name = "MaidSettingsForm";
-            Text = "MaidSettingsForm";
+            RightToLeft = RightToLeft.Yes;
+            RightToLeftLayout = true;
+            Text = "ניהול תשלומים לעוזרת בית";
             Load += MaidSettingsForm_Load;
             ResumeLayout(false);
         }
