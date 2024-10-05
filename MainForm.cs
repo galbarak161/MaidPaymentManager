@@ -40,7 +40,9 @@ namespace MaidPaymentManager
 
         private void SetGreetingAndMonthLabel()
         {
-            lblCurrentMonth.Text = $"Current Month: {DateTime.Now.ToString("MMMM")}";
+            string currentMonthInHebrew = DateTime.Now.ToString("MMMM", new System.Globalization.CultureInfo("he-IL"));
+
+            lblCurrentMonth.Text = currentMonthInHebrew;
             lblValidationMessage.Text = "";
         }
 
@@ -57,6 +59,7 @@ namespace MaidPaymentManager
 
 
             dataGridViewWorkDetails.Controls.Add(dateTimePicker);
+            dataGridViewWorkDetails.CellEndEdit += (sender, e) => dateTimePicker.Visible = false;
             dataGridViewWorkDetails.Scroll += (sender, e) => dateTimePicker.Visible = false;
         }
 
@@ -111,15 +114,6 @@ namespace MaidPaymentManager
             }
         }
 
-        private void dataGridViewWorkDetails_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            // Hide the DateTimePicker if it was visible
-            dateTimePicker.Visible = false;
-
-            // Clear previous validation messages
-            lblValidationMessage.Text = "";
-        }
-
         private void dataGridViewWorkDetails_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {
             var row = dataGridViewWorkDetails.Rows[e.RowIndex];
@@ -131,11 +125,11 @@ namespace MaidPaymentManager
             // Validate the date and number of hours before allowing the row to be added or edited
             if (string.IsNullOrWhiteSpace(dateValue) || !_newWorkValidator.ValidateDate(dateValue))
             {
-                lblValidationMessage.Text = "Date must be a valid date in the current month.";
+                lblValidationMessage.Text = "הוזן תאריך לא חוקי";
             }
             else if (string.IsNullOrWhiteSpace(numberOfHoursValue) || !_newWorkValidator.ValidateNumberOfHours(numberOfHoursValue))
             {
-                lblValidationMessage.Text = "Number of Hours must be a positive number between 1 and 5.";
+                lblValidationMessage.Text = "הוזנו מספר שעות לא חוקי";
             }
             else
             {
@@ -193,9 +187,9 @@ namespace MaidPaymentManager
                 }
             }
 
-            lblWorkedDays.Text = $"Worked Days: {totalDays}";
-            lblTotalHours.Text = $"Total Hours: {totalHours}";
-            lblTotalPayment.Text = $"Total Payment: ${totalHours * 10}";
+            lblWorkedDays.Text = totalDays.ToString();
+            lblTotalHours.Text = totalHours.ToString();
+            lblTotalPayment.Text = (totalHours * 10).ToString();
         }
 
         #region buttons
