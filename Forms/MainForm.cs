@@ -198,8 +198,27 @@ namespace MaidPaymentManager
         #region buttons
         private void btnMaidSettings_Click(object sender, EventArgs e)
         {
-            MaidSettingsForm maidSettingsForm = new MaidSettingsForm();
-            maidSettingsForm.ShowDialog();
+            this.Hide();
+            this.Enabled = false;
+
+            // Create the MaidSettingsForm
+            MaidSettingsForm maidSettingsForm = new MaidSettingsForm
+            {
+                Size = this.Size,                
+                StartPosition = FormStartPosition.Manual,
+                Location = this.Location,       
+                RightToLeft = this.RightToLeft, 
+                RightToLeftLayout = this.RightToLeftLayout
+            };
+
+            // Re-enable and show the MainForm when MaidSettingsForm closes
+            maidSettingsForm.FormClosed += (s, args) =>
+            {
+                this.Enabled = true; 
+                this.Show();
+            };
+
+            maidSettingsForm.Show();
         }
 
         private void btnStatistics_Click(object sender, EventArgs e)

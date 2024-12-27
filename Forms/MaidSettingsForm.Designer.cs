@@ -28,13 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnBack = new Button();
             SuspendLayout();
+            // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(10, 10);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(100, 30);
+            btnBack.TabIndex = 0;
+            btnBack.Text = "חזרה";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // MaidSettingsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
+            Controls.Add(btnBack);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MaidSettingsForm";
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
@@ -44,5 +57,7 @@
         }
 
         #endregion
+
+        private Button btnBack;
     }
 }
