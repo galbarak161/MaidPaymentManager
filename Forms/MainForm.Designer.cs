@@ -94,6 +94,7 @@
             btnMaidSettings.BackColor = Color.LightSteelBlue;
             btnMaidSettings.FlatAppearance.BorderSize = 0;
             btnMaidSettings.FlatStyle = FlatStyle.Flat;
+            btnMaidSettings.UseVisualStyleBackColor = false;
             btnMaidSettings.Font = new Font("Arial", 10F, FontStyle.Bold);
             btnMaidSettings.Location = new Point(26, 310);
             btnMaidSettings.Margin = new Padding(3, 2, 3, 2);
@@ -101,7 +102,6 @@
             btnMaidSettings.Size = new Size(131, 29);
             btnMaidSettings.TabIndex = 3;
             btnMaidSettings.Text = "הגדרות עובד";
-            btnMaidSettings.UseVisualStyleBackColor = false;
             btnMaidSettings.Click += btnMaidSettings_Click;
             // 
             // btnStatistics
