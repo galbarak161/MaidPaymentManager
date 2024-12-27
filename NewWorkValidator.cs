@@ -15,7 +15,7 @@
                 return false;
 
             // Check if the date is within the current month
-            return date.Year == DateTime.Now.Year && date.Month == DateTime.Now.Month;
+            return date.Year == DateTime.Now.Year && date.Month == DateTime.Now.Month && date <= DateTime.Now;
         }
 
         public bool ValidateNumberOfHours(string hoursValue)

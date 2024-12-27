@@ -122,6 +122,9 @@ namespace MaidPaymentManager
 
             var isValidRow = false;
 
+            if (dateValue is null && numberOfHoursValue is null)
+                return;
+
             // Validate the date and number of hours before allowing the row to be added or edited
             if (string.IsNullOrWhiteSpace(dateValue) || !_newWorkValidator.ValidateDate(dateValue))
             {
