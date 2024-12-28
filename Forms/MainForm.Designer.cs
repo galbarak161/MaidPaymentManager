@@ -53,9 +53,9 @@
             // 
             lblWorkedDaysTitle.Font = new Font("Arial", 10F, FontStyle.Bold);
             lblWorkedDaysTitle.ForeColor = Color.DarkSlateGray;
-            lblWorkedDaysTitle.Location = new Point(26, 94);
+            lblWorkedDaysTitle.Location = new Point(30, 125);
             lblWorkedDaysTitle.Name = "lblWorkedDaysTitle";
-            lblWorkedDaysTitle.Size = new Size(175, 19);
+            lblWorkedDaysTitle.Size = new Size(200, 25);
             lblWorkedDaysTitle.TabIndex = 2;
             lblWorkedDaysTitle.Text = "סה\"כ ימי עבודה:";
             // 
@@ -63,9 +63,9 @@
             // 
             lblTotalHoursTitle.Font = new Font("Arial", 10F, FontStyle.Bold);
             lblTotalHoursTitle.ForeColor = Color.DarkSlateGray;
-            lblTotalHoursTitle.Location = new Point(26, 119);
+            lblTotalHoursTitle.Location = new Point(30, 159);
             lblTotalHoursTitle.Name = "lblTotalHoursTitle";
-            lblTotalHoursTitle.Size = new Size(175, 19);
+            lblTotalHoursTitle.Size = new Size(200, 25);
             lblTotalHoursTitle.TabIndex = 3;
             lblTotalHoursTitle.Text = "סה\"כ שעות שדווחו:";
             // 
@@ -73,9 +73,9 @@
             // 
             lblTotalPaymentTitle.Font = new Font("Arial", 10F, FontStyle.Bold);
             lblTotalPaymentTitle.ForeColor = Color.DarkSlateGray;
-            lblTotalPaymentTitle.Location = new Point(26, 144);
+            lblTotalPaymentTitle.Location = new Point(30, 192);
             lblTotalPaymentTitle.Name = "lblTotalPaymentTitle";
-            lblTotalPaymentTitle.Size = new Size(175, 19);
+            lblTotalPaymentTitle.Size = new Size(200, 25);
             lblTotalPaymentTitle.TabIndex = 4;
             lblTotalPaymentTitle.Text = "סה\"כ לתשלום:";
             // 
@@ -83,9 +83,9 @@
             // 
             lblValidationMessage.Font = new Font("Arial", 9F, FontStyle.Italic);
             lblValidationMessage.ForeColor = Color.Red;
-            lblValidationMessage.Location = new Point(26, 289);
+            lblValidationMessage.Location = new Point(30, 385);
             lblValidationMessage.Name = "lblValidationMessage";
-            lblValidationMessage.Size = new Size(448, 21);
+            lblValidationMessage.Size = new Size(512, 28);
             lblValidationMessage.TabIndex = 5;
             lblValidationMessage.Text = "הודעת שגיאה";
             // 
@@ -94,14 +94,13 @@
             btnMaidSettings.BackColor = Color.LightSteelBlue;
             btnMaidSettings.FlatAppearance.BorderSize = 0;
             btnMaidSettings.FlatStyle = FlatStyle.Flat;
-            btnMaidSettings.UseVisualStyleBackColor = false;
             btnMaidSettings.Font = new Font("Arial", 10F, FontStyle.Bold);
-            btnMaidSettings.Location = new Point(26, 310);
-            btnMaidSettings.Margin = new Padding(3, 2, 3, 2);
+            btnMaidSettings.Location = new Point(30, 413);
             btnMaidSettings.Name = "btnMaidSettings";
-            btnMaidSettings.Size = new Size(131, 29);
+            btnMaidSettings.Size = new Size(150, 39);
             btnMaidSettings.TabIndex = 3;
             btnMaidSettings.Text = "הגדרות עובד";
+            btnMaidSettings.UseVisualStyleBackColor = false;
             btnMaidSettings.Click += btnMaidSettings_Click;
             // 
             // btnStatistics
@@ -110,10 +109,9 @@
             btnStatistics.FlatAppearance.BorderSize = 0;
             btnStatistics.FlatStyle = FlatStyle.Flat;
             btnStatistics.Font = new Font("Arial", 10F, FontStyle.Bold);
-            btnStatistics.Location = new Point(186, 310);
-            btnStatistics.Margin = new Padding(3, 2, 3, 2);
+            btnStatistics.Location = new Point(213, 413);
             btnStatistics.Name = "btnStatistics";
-            btnStatistics.Size = new Size(131, 29);
+            btnStatistics.Size = new Size(150, 39);
             btnStatistics.TabIndex = 4;
             btnStatistics.Text = "סטטיסטיקות";
             btnStatistics.UseVisualStyleBackColor = false;
@@ -125,10 +123,9 @@
             btnEmployerContributions.FlatAppearance.BorderSize = 0;
             btnEmployerContributions.FlatStyle = FlatStyle.Flat;
             btnEmployerContributions.Font = new Font("Arial", 10F, FontStyle.Bold);
-            btnEmployerContributions.Location = new Point(343, 310);
-            btnEmployerContributions.Margin = new Padding(3, 2, 3, 2);
+            btnEmployerContributions.Location = new Point(392, 413);
             btnEmployerContributions.Name = "btnEmployerContributions";
-            btnEmployerContributions.Size = new Size(131, 29);
+            btnEmployerContributions.Size = new Size(150, 39);
             btnEmployerContributions.TabIndex = 5;
             btnEmployerContributions.Text = "הגדרות מעסיק";
             btnEmployerContributions.UseVisualStyleBackColor = false;
@@ -146,13 +143,14 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridViewWorkDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewWorkDetails.ColumnHeadersHeight = 29;
             dataGridViewWorkDetails.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3 });
             dataGridViewWorkDetails.GridColor = Color.LightGray;
-            dataGridViewWorkDetails.Location = new Point(26, 175);
-            dataGridViewWorkDetails.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewWorkDetails.Location = new Point(30, 233);
             dataGridViewWorkDetails.Name = "dataGridViewWorkDetails";
             dataGridViewWorkDetails.RowHeadersVisible = false;
-            dataGridViewWorkDetails.Size = new Size(448, 108);
+            dataGridViewWorkDetails.RowHeadersWidth = 51;
+            dataGridViewWorkDetails.Size = new Size(512, 144);
             dataGridViewWorkDetails.TabIndex = 6;
             dataGridViewWorkDetails.CellBeginEdit += dataGridViewWorkDetails_CellBeginEdit;
             dataGridViewWorkDetails.EditingControlShowing += dataGridViewWorkDetails_EditingControlShowing;
@@ -163,26 +161,32 @@
             // dataGridViewTextBoxColumn1
             // 
             dataGridViewTextBoxColumn1.HeaderText = "תאריך";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 125;
             // 
             // dataGridViewTextBoxColumn2
             // 
             dataGridViewTextBoxColumn2.HeaderText = "מספר שעות";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Width = 125;
             // 
             // dataGridViewTextBoxColumn3
             // 
             dataGridViewTextBoxColumn3.HeaderText = "הערות";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Width = 125;
             // 
             // lblGreeting
             // 
             lblGreeting.AutoSize = true;
             lblGreeting.Font = new Font("Arial", 16F, FontStyle.Bold);
             lblGreeting.ForeColor = Color.DarkSlateBlue;
-            lblGreeting.Location = new Point(107, 20);
+            lblGreeting.Location = new Point(122, 27);
             lblGreeting.Name = "lblGreeting";
-            lblGreeting.Size = new Size(268, 26);
+            lblGreeting.Size = new Size(341, 32);
             lblGreeting.TabIndex = 1;
             lblGreeting.Text = "תוכנת ניהול תשלומים לעוזרת";
             lblGreeting.TextAlign = ContentAlignment.MiddleCenter;
@@ -192,9 +196,9 @@
             lblCurrentMonthTitle.AutoSize = true;
             lblCurrentMonthTitle.Font = new Font("Arial", 12F);
             lblCurrentMonthTitle.ForeColor = Color.DarkCyan;
-            lblCurrentMonthTitle.Location = new Point(107, 58);
+            lblCurrentMonthTitle.Location = new Point(122, 77);
             lblCurrentMonthTitle.Name = "lblCurrentMonthTitle";
-            lblCurrentMonthTitle.Size = new Size(77, 18);
+            lblCurrentMonthTitle.Size = new Size(104, 23);
             lblCurrentMonthTitle.TabIndex = 0;
             lblCurrentMonthTitle.Text = "חודש נוכחי:";
             lblCurrentMonthTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -204,9 +208,9 @@
             lblCurrentMonth.AutoSize = true;
             lblCurrentMonth.Font = new Font("Arial", 12F);
             lblCurrentMonth.ForeColor = Color.DarkCyan;
-            lblCurrentMonth.Location = new Point(302, 58);
+            lblCurrentMonth.Location = new Point(345, 77);
             lblCurrentMonth.Name = "lblCurrentMonth";
-            lblCurrentMonth.Size = new Size(73, 18);
+            lblCurrentMonth.Size = new Size(98, 23);
             lblCurrentMonth.TabIndex = 7;
             lblCurrentMonth.Text = "חודש נוכחי";
             lblCurrentMonth.TextAlign = ContentAlignment.MiddleCenter;
@@ -215,9 +219,9 @@
             // 
             lblWorkedDays.Font = new Font("Arial", 10F, FontStyle.Bold);
             lblWorkedDays.ForeColor = Color.DarkSlateGray;
-            lblWorkedDays.Location = new Point(154, 94);
+            lblWorkedDays.Location = new Point(176, 125);
             lblWorkedDays.Name = "lblWorkedDays";
-            lblWorkedDays.Size = new Size(175, 19);
+            lblWorkedDays.Size = new Size(200, 25);
             lblWorkedDays.TabIndex = 8;
             lblWorkedDays.Text = "0";
             // 
@@ -225,9 +229,9 @@
             // 
             lblTotalHours.Font = new Font("Arial", 10F, FontStyle.Bold);
             lblTotalHours.ForeColor = Color.DarkSlateGray;
-            lblTotalHours.Location = new Point(154, 119);
+            lblTotalHours.Location = new Point(176, 159);
             lblTotalHours.Name = "lblTotalHours";
-            lblTotalHours.Size = new Size(175, 19);
+            lblTotalHours.Size = new Size(200, 25);
             lblTotalHours.TabIndex = 9;
             lblTotalHours.Text = "0";
             // 
@@ -235,18 +239,18 @@
             // 
             lblTotalPayment.Font = new Font("Arial", 10F, FontStyle.Bold);
             lblTotalPayment.ForeColor = Color.DarkSlateGray;
-            lblTotalPayment.Location = new Point(154, 144);
+            lblTotalPayment.Location = new Point(176, 192);
             lblTotalPayment.Name = "lblTotalPayment";
-            lblTotalPayment.Size = new Size(175, 19);
+            lblTotalPayment.Size = new Size(200, 25);
             lblTotalPayment.TabIndex = 10;
             lblTotalPayment.Text = "0";
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(495, 351);
+            ClientSize = new Size(566, 493);
             Controls.Add(lblWorkedDays);
             Controls.Add(lblTotalHours);
             Controls.Add(lblTotalPayment);
@@ -261,7 +265,6 @@
             Controls.Add(btnStatistics);
             Controls.Add(btnEmployerContributions);
             Controls.Add(dataGridViewWorkDetails);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "MainForm";
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;

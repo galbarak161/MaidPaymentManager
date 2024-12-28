@@ -57,8 +57,16 @@ namespace MaidPaymentManager
             txtTravelRefund = new TextBox();
             txtHourlyPrice = new TextBox();
             txtStartEmploymentDate = new TextBox();
+            NationalInsurancePanel = new Panel();
+            btnCopyNationalInsuranceIdentifier = new Button();
+            btnCopyNationalInsuranceDeductionFile = new Button();
+            lblNationalInsuranceDeductionFile = new Label();
+            lblNationalInsuranceIdentifier = new Label();
+            txtNationalInsuranceDeductionFile = new TextBox();
+            txtNationalInsuranceIdentifier = new TextBox();
             personalDetailsPanel.SuspendLayout();
             workAgreementPanel.SuspendLayout();
+            NationalInsurancePanel.SuspendLayout();
             SuspendLayout();
             // 
             // btnBack
@@ -388,11 +396,92 @@ namespace MaidPaymentManager
             txtStartEmploymentDate.Size = new Size(100, 27);
             txtStartEmploymentDate.TabIndex = 14;
             // 
+            // NationalInsurancePanel
+            // 
+            NationalInsurancePanel.BorderStyle = BorderStyle.FixedSingle;
+            NationalInsurancePanel.Controls.Add(btnCopyNationalInsuranceIdentifier);
+            NationalInsurancePanel.Controls.Add(btnCopyNationalInsuranceDeductionFile);
+            NationalInsurancePanel.Controls.Add(lblNationalInsuranceDeductionFile);
+            NationalInsurancePanel.Controls.Add(lblNationalInsuranceIdentifier);
+            NationalInsurancePanel.Controls.Add(txtNationalInsuranceDeductionFile);
+            NationalInsurancePanel.Controls.Add(txtNationalInsuranceIdentifier);
+            NationalInsurancePanel.Location = new Point(12, 377);
+            NationalInsurancePanel.Name = "NationalInsurancePanel";
+            NationalInsurancePanel.Size = new Size(537, 109);
+            NationalInsurancePanel.TabIndex = 3;
+            // 
+            // btnCopyNationalInsuranceIdentifier
+            // 
+            btnCopyNationalInsuranceIdentifier.BackColor = Color.LightSteelBlue;
+            btnCopyNationalInsuranceIdentifier.FlatAppearance.BorderSize = 0;
+            btnCopyNationalInsuranceIdentifier.FlatStyle = FlatStyle.Flat;
+            btnCopyNationalInsuranceIdentifier.Font = new Font("Arial", 7F, FontStyle.Bold);
+            btnCopyNationalInsuranceIdentifier.Location = new Point(111, 70);
+            btnCopyNationalInsuranceIdentifier.Name = "btnCopyNationalInsuranceIdentifier";
+            btnCopyNationalInsuranceIdentifier.Size = new Size(50, 27);
+            btnCopyNationalInsuranceIdentifier.TabIndex = 21;
+            btnCopyNationalInsuranceIdentifier.Text = "העתק";
+            btnCopyNationalInsuranceIdentifier.UseVisualStyleBackColor = false;
+            // 
+            // btnCopyNationalInsuranceDeductionFile
+            // 
+            btnCopyNationalInsuranceDeductionFile.BackColor = Color.LightSteelBlue;
+            btnCopyNationalInsuranceDeductionFile.FlatAppearance.BorderSize = 0;
+            btnCopyNationalInsuranceDeductionFile.FlatStyle = FlatStyle.Flat;
+            btnCopyNationalInsuranceDeductionFile.Font = new Font("Arial", 7F, FontStyle.Bold);
+            btnCopyNationalInsuranceDeductionFile.Location = new Point(111, 20);
+            btnCopyNationalInsuranceDeductionFile.Name = "btnCopyNationalInsuranceDeductionFile";
+            btnCopyNationalInsuranceDeductionFile.Size = new Size(50, 27);
+            btnCopyNationalInsuranceDeductionFile.TabIndex = 18;
+            btnCopyNationalInsuranceDeductionFile.Text = "העתק";
+            btnCopyNationalInsuranceDeductionFile.UseVisualStyleBackColor = false;
+            // 
+            // lblNationalInsuranceDeductionFile
+            // 
+            lblNationalInsuranceDeductionFile.AutoSize = true;
+            lblNationalInsuranceDeductionFile.Font = new Font("Arial", 10F, FontStyle.Bold);
+            lblNationalInsuranceDeductionFile.ForeColor = Color.DarkSlateGray;
+            lblNationalInsuranceDeductionFile.Location = new Point(357, 20);
+            lblNationalInsuranceDeductionFile.Name = "lblNationalInsuranceDeductionFile";
+            lblNationalInsuranceDeductionFile.Size = new Size(176, 19);
+            lblNationalInsuranceDeductionFile.TabIndex = 20;
+            lblNationalInsuranceDeductionFile.Text = "תיק ניכויים בביטוח לאומי";
+            // 
+            // lblNationalInsuranceIdentifier
+            // 
+            lblNationalInsuranceIdentifier.AutoSize = true;
+            lblNationalInsuranceIdentifier.Font = new Font("Arial", 10F, FontStyle.Bold);
+            lblNationalInsuranceIdentifier.ForeColor = Color.DarkSlateGray;
+            lblNationalInsuranceIdentifier.Location = new Point(400, 70);
+            lblNationalInsuranceIdentifier.Name = "lblNationalInsuranceIdentifier";
+            lblNationalInsuranceIdentifier.Size = new Size(133, 19);
+            lblNationalInsuranceIdentifier.TabIndex = 18;
+            lblNationalInsuranceIdentifier.Text = "מזהה ביטוח לאומי";
+            // 
+            // txtNationalInsuranceDeductionFile
+            // 
+            txtNationalInsuranceDeductionFile.Enabled = false;
+            txtNationalInsuranceDeductionFile.Location = new Point(182, 20);
+            txtNationalInsuranceDeductionFile.Name = "txtNationalInsuranceDeductionFile";
+            txtNationalInsuranceDeductionFile.ReadOnly = true;
+            txtNationalInsuranceDeductionFile.Size = new Size(169, 27);
+            txtNationalInsuranceDeductionFile.TabIndex = 15;
+            // 
+            // txtNationalInsuranceIdentifier
+            // 
+            txtNationalInsuranceIdentifier.Enabled = false;
+            txtNationalInsuranceIdentifier.Location = new Point(182, 70);
+            txtNationalInsuranceIdentifier.Name = "txtNationalInsuranceIdentifier";
+            txtNationalInsuranceIdentifier.ReadOnly = true;
+            txtNationalInsuranceIdentifier.Size = new Size(169, 27);
+            txtNationalInsuranceIdentifier.TabIndex = 14;
+            // 
             // MaidSettingsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(566, 468);
+            ClientSize = new Size(566, 493);
+            Controls.Add(NationalInsurancePanel);
             Controls.Add(workAgreementPanel);
             Controls.Add(personalDetailsPanel);
             Controls.Add(btnBack);
@@ -406,6 +495,8 @@ namespace MaidPaymentManager
             personalDetailsPanel.PerformLayout();
             workAgreementPanel.ResumeLayout(false);
             workAgreementPanel.PerformLayout();
+            NationalInsurancePanel.ResumeLayout(false);
+            NationalInsurancePanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -439,5 +530,12 @@ namespace MaidPaymentManager
         private Label lblStartEmploymentDate;
         private Label lblTravelRefund;
         private Label lblHourlyPrice;
+        private Panel NationalInsurancePanel;
+        private Label lblNationalInsuranceDeductionFile;
+        private Label lblNationalInsuranceIdentifier;
+        private TextBox txtNationalInsuranceDeductionFile;
+        private TextBox txtNationalInsuranceIdentifier;
+        private Button btnCopyNationalInsuranceIdentifier;
+        private Button btnCopyNationalInsuranceDeductionFile;
     }
 }

@@ -33,6 +33,11 @@ namespace MaidPaymentManager
             txtStartEmploymentDate.Text = DateTime.Today.AddYears(-1).ToShortDateString();
             txtHourlyPrice.Text = "10";
             txtTravelRefund.Text = "5";
+
+            // Mock National Insurance settings
+            txtNationalInsuranceIdentifier.Text = "10156";
+            txtNationalInsuranceDeductionFile.Text = "5456468";
+
         }
 
         private void InitializeCopyToClipboardButtons()
@@ -51,6 +56,12 @@ namespace MaidPaymentManager
 
             btnCopyPhoneNumber.Click += (s, e) => CopyToClipboard(s, e);
             btnCopyPhoneNumber.Tag = txtPhoneNumber;
+
+            btnCopyNationalInsuranceIdentifier.Click += (s, e) => CopyToClipboard(s, e);
+            btnCopyNationalInsuranceIdentifier.Tag = txtNationalInsuranceIdentifier;
+
+            btnCopyNationalInsuranceDeductionFile.Click += (s, e) => CopyToClipboard(s, e);
+            btnCopyNationalInsuranceDeductionFile.Tag = txtNationalInsuranceDeductionFile;
         }
 
         private void CopyToClipboard(object sender, EventArgs e)
